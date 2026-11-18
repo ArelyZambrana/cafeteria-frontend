@@ -34,6 +34,11 @@
   transition: transform 500ms ease;
 }
 
+/* Si la foto falla, se oculta y queda el fondo de color */
+.especialidad__imagen img[hidden] {
+  display: none;
+}
+
 .especialidad:hover .especialidad__imagen img {
   transform: scale(1.06);
 }
