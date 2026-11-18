@@ -1,0 +1,67 @@
+<section class="section section--alt" aria-labelledby="contacto-title">
+  <div class="section__content">
+    <header class="section__header" appReveal>
+      @if (seccion(); as s) {
+        <p class="section__eyebrow">{{ s.antetitulo }}</p>
+        <h2 class="section__title" id="contacto-title">{{ s.titulo }}</h2>
+        <p class="section__description">{{ s.descripcion }}</p>
+      }
+    </header>
+
+    <div class="contacto__grid">
+      <form class="form" [formGroup]="contactoForm" (ngSubmit)="enviar()" novalidate appReveal>
+        <div class="form__campo">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" type="text" formControlName="nombre" autocomplete="name" />
+          @if (contactoForm.controls.nombre.touched && contactoForm.controls.nombre.invalid) {
+            <p class="form__error">Escribe tu nombre (mínimo 2 letras).</p>
+          }
+        </div>
+
+        <div class="form__campo">
+          <label for="correo">Correo electrónico</label>
+          <input id="correo" type="email" formControlName="correo" autocomplete="email" />
+          @if (contactoForm.controls.correo.touched && contactoForm.controls.correo.invalid) {
+            <p class="form__error">Escribe un correo válido.</p>
+          }
+        </div>
+
+        <div class="form__campo">
+          <label for="asunto">Asunto</label>
+          <input id="asunto" type="text" formControlName="asunto" />
+          @if (contactoForm.controls.asunto.touched && contactoForm.controls.asunto.invalid) {
+            <p class="form__error">Escribe el asunto (mínimo 3 letras).</p>
+          }
+        </div>
+
+        <div class="form__campo">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" rows="5" formControlName="mensaje"></textarea>
+          @if (contactoForm.controls.mensaje.touched && contactoForm.controls.mensaje.invalid) {
+            <p class="form__error">Cuéntanos un poco más (mínimo 10 caracteres).</p>
+          }
+        </div>
+
+        <button class="btn" type="submit" [disabled]="enviando()">
+          {{ enviando() ? 'Enviando…' : 'Enviar mensaje' }}
+        </button>
+
+        @if (exito(); as texto) {
+          <p class="form__aviso form__aviso--ok" role="status">{{ texto }}</p>
+        }
+        @if (error(); as texto) {
+          <p class="form__aviso form__aviso--error" role="alert">{{ texto }}</p>
+        }
+      </form>
+
+      @if (cafeteria(); as info) {
+        <aside class="datos" appReveal [revealDelay]="120">
+          <h3 class="datos__titulo">{{ info.nombre }}</h3>
+          <p>{{ info.direccion }}<br />{{ info.ciudad }}</p>
+          <p><a [href]="'tel:' + info.telefono.replaceAll(' ', '')">{{ info.telefono }}</a></p>
+          <p><a [href]="'mailto:' + info.correo">{{ info.correo }}</a></p>
+        </aside>
+      }
+    </div>
+  </div>
+</section>

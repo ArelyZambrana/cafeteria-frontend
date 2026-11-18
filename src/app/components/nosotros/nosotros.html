@@ -1,0 +1,75 @@
+<section class="section section--alt" aria-labelledby="nosotros-title">
+  <div class="section__content">
+    <header class="section__header" appReveal>
+      @if (seccion(); as s) {
+        <p class="section__eyebrow">{{ s.antetitulo }}</p>
+        <h2 class="section__title" id="nosotros-title">{{ s.titulo }}</h2>
+        <p class="section__description">{{ s.descripcion }}</p>
+      }
+    </header>
+
+    @if (cafeteria() === null) {
+      <p class="estado">No pudimos cargar la información de la cafetería.</p>
+    } @else if (cafeteria(); as info) {
+      <div class="nosotros__grid">
+        <p class="nosotros__historia" appReveal>{{ info.historia }}</p>
+
+        <aside class="nosotros__datos" appReveal [revealDelay]="120">
+          <h3 class="nosotros__nombre">{{ info.nombre }}</h3>
+          <dl class="nosotros__lista">
+            <div>
+              <dt>Dirección</dt>
+              <dd>
+                {{ info.direccion }}<br />{{ info.ciudad }}
+                @if (enlaceMapa(); as mapa) {
+                  <br /><a [href]="mapa" target="_blank" rel="noopener">Ver en el mapa ↗</a>
+                }
+              </dd>
+            </div>
+            <div>
+              <dt>Teléfono</dt>
+              <dd>
+                <a [href]="'tel:' + info.telefono.replaceAll(' ', '')">{{ info.telefono }}</a>
+              </dd>
+            </div>
+            <div>
+              <dt>Correo</dt>
+              <dd>
+                <a [href]="'mailto:' + info.correo">{{ info.correo }}</a>
+              </dd>
+            </div>
+            <div>
+              <dt>Horarios</dt>
+              <dd>
+                @for (h of info.horarios; track h.dia) {
+                  <span class="nosotros__horario">
+                    <span>{{ h.dia }}</span>
+                    <strong>{{ h.horario }}</strong>
+                  </span>
+                }
+              </dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    }
+
+    @if (fotos() === null) {
+      <p class="estado">No pudimos cargar las fotos de la tienda.</p>
+    } @else {
+      <div class="nosotros__fotos">
+        @for (foto of fotos(); track foto.id; let index = $index) {
+          <figure class="foto" appReveal [revealDelay]="index * 80">
+            <img
+              [src]="rutaFoto(foto.archivo)"
+              [alt]="foto.titulo"
+              loading="lazy"
+              (error)="ocultarImagen($event)"
+            />
+            <figcaption>{{ foto.titulo }}</figcaption>
+          </figure>
+        }
+      </div>
+    }
+  </div>
+</section>

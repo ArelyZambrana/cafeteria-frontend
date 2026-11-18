@@ -1,0 +1,46 @@
+:host {
+  display: block;
+}
+
+.servicios__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.servicio {
+  padding: 2rem 1.75rem;
+  border: 1px solid var(--borde);
+  border-radius: 2rem;
+  background: var(--cafe-800);
+  transition:
+    transform 250ms ease,
+    border-color 250ms ease;
+}
+
+.servicio:hover {
+  border-color: var(--acento);
+  transform: translateY(-6px);
+}
+
+.servicio__icono {
+  display: grid;
+  width: 3.5rem;
+  height: 3.5rem;
+  place-items: center;
+  border-radius: 1.1rem;
+  background: rgb(212 146 63 / 16%);
+  font-size: 1.75rem;
+}
+
+.servicio__nombre {
+  margin: 1.25rem 0 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.servicio__descripcion {
+  margin: 0;
+  color: var(--crema-suave);
+  font-size: 0.95rem;
+}

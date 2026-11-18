@@ -1,0 +1,103 @@
+:host {
+  display: block;
+}
+
+.contacto__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.form {
+  display: grid;
+  gap: 1.1rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid var(--borde);
+  border-radius: 2rem;
+  background: var(--cafe-800);
+}
+
+.form__campo {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.form__campo label {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.form__campo input,
+.form__campo textarea {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  border: 1.5px solid var(--borde);
+  border-radius: 1rem;
+  background: var(--cafe-950);
+  color: var(--crema);
+  resize: vertical;
+}
+
+.form__campo input:focus,
+.form__campo textarea:focus {
+  border-color: var(--acento);
+  outline: none;
+}
+
+.form__error {
+  margin: 0;
+  color: #ff9d8a;
+  font-size: 0.85rem;
+}
+
+.form .btn {
+  justify-self: start;
+}
+
+.form__aviso {
+  margin: 0;
+  padding: 0.9rem 1.1rem;
+  border-radius: 1rem;
+  font-weight: 600;
+}
+
+.form__aviso--ok {
+  background: rgb(120 190 120 / 16%);
+  color: #b8e6b8;
+}
+
+.form__aviso--error {
+  background: rgb(255 120 100 / 14%);
+  color: #ffb3a6;
+}
+
+.datos {
+  padding: 2rem;
+  border: 1px solid var(--borde);
+  border-radius: 2rem;
+  background: var(--cafe-800);
+}
+
+.datos__titulo {
+  margin: 0 0 1rem;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.datos p {
+  margin: 0 0 0.9rem;
+  color: var(--crema-suave);
+}
+
+.datos a {
+  color: var(--crema);
+  text-decoration-color: var(--acento);
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 860px) {
+  .contacto__grid {
+    grid-template-columns: 1fr;
+  }
+}

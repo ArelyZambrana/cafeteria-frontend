@@ -1,0 +1,24 @@
+<footer class="footer">
+  @if (cafeteria(); as info) {
+    <div class="footer__content">
+      <div class="footer__marca">
+        <p class="footer__nombre">{{ info.nombre }}</p>
+        <p class="footer__eslogan">{{ info.eslogan }}</p>
+      </div>
+
+      <nav class="footer__enlaces" aria-label="Enlaces del pie de página">
+        @for (seccion of secciones(); track seccion.id) {
+          <a [href]="'#' + seccion.clave">{{ seccion.menu }}</a>
+        }
+      </nav>
+
+      <address class="footer__contacto">
+        <span>{{ info.direccion }}, {{ info.ciudad }}</span>
+        <a [href]="'tel:' + info.telefono.replaceAll(' ', '')">{{ info.telefono }}</a>
+        <a [href]="'mailto:' + info.correo">{{ info.correo }}</a>
+      </address>
+    </div>
+
+    <p class="footer__copy">© {{ anio }} {{ info.nombre }}</p>
+  }
+</footer>

@@ -1,0 +1,36 @@
+<section class="section" aria-labelledby="precios-title">
+  <div class="section__content">
+    <header class="section__header" appReveal>
+      @if (seccion(); as s) {
+        <p class="section__eyebrow">{{ s.antetitulo }}</p>
+        <h2 class="section__title" id="precios-title">{{ s.titulo }}</h2>
+        <p class="section__description">{{ s.descripcion }}</p>
+      }
+    </header>
+
+    @if (precios() === null) {
+      <p class="estado">No pudimos cargar los precios. Intenta de nuevo más tarde.</p>
+    } @else {
+      <div class="precios__grid">
+        @for (grupo of grupos(); track grupo.categoria; let index = $index) {
+          <article class="categoria" appReveal [revealDelay]="index * 100">
+            <h3 class="categoria__titulo">{{ grupo.categoria }}</h3>
+            <ul class="categoria__lista">
+              @for (item of grupo.items; track item.id) {
+                <li class="producto">
+                  <div class="producto__info">
+                    <span class="producto__nombre">{{ item.producto }}</span>
+                    @if (item.descripcion) {
+                      <span class="producto__descripcion">{{ item.descripcion }}</span>
+                    }
+                  </div>
+                  <span class="producto__precio">Bs {{ item.precio | number: '1.2-2' }}</span>
+                </li>
+              }
+            </ul>
+          </article>
+        }
+      </div>
+    }
+  </div>
+</section>

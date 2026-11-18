@@ -1,0 +1,25 @@
+<section class="section section--alt" aria-labelledby="servicios-title">
+  <div class="section__content">
+    <header class="section__header" appReveal>
+      @if (seccion(); as s) {
+        <p class="section__eyebrow">{{ s.antetitulo }}</p>
+        <h2 class="section__title" id="servicios-title">{{ s.titulo }}</h2>
+        <p class="section__description">{{ s.descripcion }}</p>
+      }
+    </header>
+
+    @if (servicios() === null) {
+      <p class="estado">No pudimos cargar los servicios. Intenta de nuevo más tarde.</p>
+    } @else {
+      <div class="servicios__grid">
+        @for (servicio of servicios(); track servicio.id; let index = $index) {
+          <article class="servicio" appReveal [revealDelay]="index * 80">
+            <span class="servicio__icono" aria-hidden="true">{{ servicio.icono }}</span>
+            <h3 class="servicio__nombre">{{ servicio.nombre }}</h3>
+            <p class="servicio__descripcion">{{ servicio.descripcion }}</p>
+          </article>
+        }
+      </div>
+    }
+  </div>
+</section>

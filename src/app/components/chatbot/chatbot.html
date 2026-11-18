@@ -1,0 +1,66 @@
+<div class="chatbot">
+  @if (isOpen()) {
+    <section class="chatbot__window" role="dialog" aria-labelledby="chatbot-title">
+      <header class="chatbot__header">
+        <div>
+          <h2 id="chatbot-title">{{ cafeteria()?.nombre }}</h2>
+          <p>Asistente virtual</p>
+        </div>
+        <button class="chatbot__close" type="button" aria-label="Cerrar chat" (click)="toggleChat()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </header>
+
+      <div class="chatbot__messages" #lista aria-live="polite">
+        @if (cafeteria(); as info) {
+          <p class="chatbot__msg chatbot__msg--bot">{{ info.saludoChatbot }}</p>
+        }
+        @for (mensaje of mensajes(); track $index) {
+          <p
+            class="chatbot__msg"
+            [class.chatbot__msg--user]="mensaje.role === 'user'"
+            [class.chatbot__msg--bot]="mensaje.role === 'assistant'"
+          >
+            {{ mensaje.content }}
+          </p>
+        }
+        @if (escribiendo()) {
+          <p class="chatbot__msg chatbot__msg--bot chatbot__msg--typing">Escribiendo…</p>
+        }
+      </div>
+
+      <form class="chatbot__form" (ngSubmit)="enviar()">
+        <input
+          type="text"
+          name="texto"
+          placeholder="Escribe tu pregunta…"
+          aria-label="Escribe un mensaje"
+          maxlength="1000"
+          autocomplete="off"
+          [(ngModel)]="texto"
+          [disabled]="escribiendo()"
+        />
+        <button type="submit" aria-label="Enviar mensaje" [disabled]="escribiendo() || !texto.trim()">
+          <span aria-hidden="true">↑</span>
+        </button>
+      </form>
+    </section>
+  }
+
+  <button
+    class="chatbot__toggle"
+    type="button"
+    [attr.aria-expanded]="isOpen()"
+    [attr.aria-label]="isOpen() ? 'Cerrar chat' : 'Abrir chat'"
+    (click)="toggleChat()"
+  >
+    @if (isOpen()) {
+      <span class="chatbot__toggle-icon" aria-hidden="true">×</span>
+    } @else {
+      <svg class="chatbot__icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H5l1.8-3.6A7.5 7.5 0 1 1 20 11.5Z" />
+        <path d="M8.5 11.5h.01M12.5 11.5h.01M16.5 11.5h.01" />
+      </svg>
+    }
+  </button>
+</div>

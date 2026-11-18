@@ -1,0 +1,36 @@
+<section class="section" aria-labelledby="especialidades-title">
+  <div class="section__content">
+    <header class="section__header" appReveal>
+      @if (seccion(); as s) {
+        <p class="section__eyebrow">{{ s.antetitulo }}</p>
+        <h2 class="section__title" id="especialidades-title">{{ s.titulo }}</h2>
+        <p class="section__description">{{ s.descripcion }}</p>
+      }
+    </header>
+
+    @if (especialidades() === null) {
+      <p class="estado">No pudimos cargar las especialidades. Intenta de nuevo más tarde.</p>
+    } @else {
+      <div class="especialidades__grid">
+        @for (item of especialidades(); track item.id; let index = $index) {
+          <article class="especialidad" appReveal [revealDelay]="index * 100">
+            <div class="especialidad__imagen">
+              @if (item.imagen) {
+                <img
+                  [src]="rutaFoto(item.imagen)"
+                  [alt]="item.nombre"
+                  loading="lazy"
+                  (error)="ocultarImagen($event)"
+                />
+              }
+            </div>
+            <div class="especialidad__texto">
+              <h3 class="especialidad__nombre">{{ item.nombre }}</h3>
+              <p class="especialidad__descripcion">{{ item.descripcion }}</p>
+            </div>
+          </article>
+        }
+      </div>
+    }
+  </div>
+</section>

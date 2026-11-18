@@ -1,0 +1,66 @@
+:host {
+  display: block;
+}
+
+.precios__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.categoria {
+  padding: 2rem;
+  border: 1px solid var(--borde);
+  border-radius: 2rem;
+  background: var(--cafe-800);
+}
+
+.categoria__titulo {
+  margin: 0 0 1.25rem;
+  color: var(--acento);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.categoria__lista {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.producto {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px dashed var(--borde);
+}
+
+.producto:last-child {
+  border-bottom: 0;
+}
+
+.producto__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.producto__nombre {
+  font-weight: 700;
+}
+
+.producto__descripcion {
+  color: var(--crema-suave);
+  font-size: 0.85rem;
+}
+
+.producto__precio {
+  flex-shrink: 0;
+  font-weight: 800;
+  white-space: nowrap;
+}

@@ -1,0 +1,64 @@
+:host {
+  display: block;
+}
+
+.footer {
+  padding: 3rem clamp(1.25rem, 5vw, 5rem) 2rem;
+  border-top: 1px solid var(--borde);
+  background: var(--cafe-950);
+}
+
+.footer__content {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.4fr;
+  gap: 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.footer__nombre {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.footer__eslogan {
+  margin: 0.25rem 0 0;
+  color: var(--acento);
+}
+
+.footer__enlaces,
+.footer__contacto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-style: normal;
+}
+
+.footer a {
+  color: var(--crema-suave);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: var(--acento);
+}
+
+.footer__contacto span {
+  color: var(--crema-suave);
+}
+
+.footer__copy {
+  max-width: 1280px;
+  margin: 2.5rem auto 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--borde);
+  color: var(--crema-suave);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 860px) {
+  .footer__content {
+    grid-template-columns: 1fr;
+  }
+}
