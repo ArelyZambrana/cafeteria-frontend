@@ -1,6 +1,7 @@
 <section class="hero" aria-labelledby="hero-title">
   @if (cafeteria(); as info) {
     <video
+      #video
       class="hero__video"
       [src]="rutaVideo(info.videoInicio)"
       autoplay
